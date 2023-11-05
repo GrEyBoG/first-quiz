@@ -41,7 +41,7 @@ We will judge the timeliness of submissions by the timestamp of your form submis
 
 ```We wish you the best for this week!```
 
-Remember that our team is here for you, and truly excited that each and everyone of you are here with the ambition and passion to transform both your lives and the lives of others through technology.
+Remember that our team is here for you, and truly excited that each and everyone of you are here with the ambition and oggassion to transform both your lives and the lives of others through technology.
 
 ```
     _________   ____ 
