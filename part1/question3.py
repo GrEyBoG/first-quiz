@@ -26,8 +26,8 @@
 # formulas and their outputs in the test file, `question3_test.py`.
 
 # This function should return an oven instance!
-def make_oven():
-  None
+# def make_oven():
+#   None
 
 def alchemy_combine(oven, ingredients, temperature):
   
@@ -42,3 +42,66 @@ def alchemy_combine(oven, ingredients, temperature):
     oven.wait()
 
   return oven.get_output()
+
+
+
+# Actualizaremos la clase Oven para asegurarnos de que no haya impresiones en los métodos
+class Oven:
+    def __init__(self):
+        self.ingredients = []
+        self.temperature = None
+
+    def add(self, item):
+        self.ingredients.append(item)
+
+    def freeze(self):
+        # Asegúrate de que no haya ningún print aquí
+        self.temperature = 'frozen'
+
+    def boil(self):
+        # Asegúrate de que no haya ningún print aquí
+        self.temperature = 'boiling'
+
+    def wait(self):
+        # Asegúrate de que no haya ningún print aquí
+        self.temperature = 'waiting'
+
+    def get_output(self):
+        # Aquí tampoco debería haber prints
+        if self.temperature == 'boiling' and "lead" in self.ingredients and "mercury" in self.ingredients:
+            return "gold"
+        elif self.temperature == 'frozen' and "water" in self.ingredients and "air" in self.ingredients:
+            return "snow"
+        elif self.temperature == 'boiling' and all(ingredient in self.ingredients for ingredient in ["cheese", "dough", "tomato"]):
+            return "pizza"
+        else:
+            return "unknown combination"
+
+# La función make_oven no debería cambiar
+def make_oven():
+    return Oven()
+
+# La función alchemy_combine tampoco debería cambiar
+def alchemy_combine(oven, ingredients, temperature):
+    for item in ingredients:
+        oven.add(item)
+
+    if temperature < 0:
+        oven.freeze()
+    elif temperature >= 100:
+        oven.boil()
+    else:
+        oven.wait()
+
+    return oven.get_output()
+
+# Redefinimos la función de prueba test_alchemy_combine para asegurarnos de que no haya prints
+# def test_alchemy_combine():
+#     assert alchemy_combine(make_oven(), ["lead", "mercury"], 5000) == "gold", "Failed to create gold"
+#     assert alchemy_combine(make_oven(), ["water", "air"], -100) == "snow", "Failed to create snow"
+#     assert alchemy_combine(make_oven(), ["cheese", "dough", "tomato"], 150) == "pizza", "Failed to create pizza"
+#     print("All tests passed successfully.")
+
+# Ejecutamos la función de prueba
+# test_alchemy_combine()
+

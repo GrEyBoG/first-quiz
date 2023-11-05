@@ -10,6 +10,7 @@ def test_question4_pets_older_than_owner():
 
   assert len(result) == 1
   assert result[0] == 2
+  print(result)
 
 def test_question4_pets_owned_by_nobody():
   pets_db.create_db()
@@ -23,6 +24,7 @@ def test_question4_pets_owned_by_nobody():
   assert len(rows) == 2
   assert rows[0] == ('petey', 'gray whale', 38)
   assert rows[1] == ('shannon', 'cow', 14)
+  print(rows)
 
 def test_question4_only_owned_by_bessie():
   pets_db.create_db()
@@ -36,3 +38,8 @@ def test_question4_only_owned_by_bessie():
   assert len(rows) == 2
   assert rows[0] == ('bessie', 'leyla', 'gray whale')
   assert rows[1] == ('bessie', 'randolph', 'lemur')
+  print(rows)
+  
+test_question4_pets_owned_by_nobody()
+test_question4_pets_older_than_owner()
+test_question4_only_owned_by_bessie()

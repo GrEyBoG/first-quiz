@@ -27,16 +27,20 @@ ANIMALS_FOOD = [
 
 def insert_foods(con):
   con.executemany("INSERT INTO favorite_foods VALUES(?, ?, ?)", FOODS)
+  print("inserted foods")
 
 def create_favorite_foods(con):
   con.execute(sql_create_favorite_foods)
+  print("created favorite foods")
 
 def alter_people_animals_food(con):
   con.executescript(sql_alter_tables_with_favorite_food);
+  print("altered tables with favorite food")
 
 def update_people_animals_food(con):
   con.executemany("UPDATE people SET favorite_food_id = ? WHERE name = ?", PEOPLE_FOOD)
   con.executemany("UPDATE animals SET favorite_food_id = ? WHERE name = ?", ANIMALS_FOOD)
+  print("updated people and animals with favorite food")
 
 def test_create_favorite_foods():
   pets_db.create_db()
@@ -44,6 +48,7 @@ def test_create_favorite_foods():
   with pets_db.get_connection() as con:
     create_favorite_foods(con)
     insert_foods(con)
+    print("created favorite foods")
     
 def test_alter_tables_with_favorite_food():
   pets_db.create_db()
@@ -53,6 +58,7 @@ def test_alter_tables_with_favorite_food():
     insert_foods(con)
     alter_people_animals_food(con)
     update_people_animals_food(con)
+    print("altered tables with favorite food")
 
 def test_select_all_vegetarian_pets():
   pets_db.create_db()
@@ -65,6 +71,7 @@ def test_select_all_vegetarian_pets():
 
     res = con.execute(sql_select_all_vegetarian_pets)
     rows = res.fetchall()
+    print(rows)
 
   rows.sort()
 
@@ -72,3 +79,11 @@ def test_select_all_vegetarian_pets():
   assert rows[1] == ('martin', 'spinach')
   assert rows[2] == ('ricky', 'cough drops')
   assert rows[3] == ('shannon', 'turnips')
+  print(rows)
+  
+
+test_create_favorite_foods()
+test_alter_tables_with_favorite_food()
+test_select_all_vegetarian_pets()
+
+
